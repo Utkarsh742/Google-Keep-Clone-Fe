@@ -4,7 +4,7 @@ import '../App.css'
 
 const Signup = () => {
     
-    const url="http://localhost:3001"
+    const url="https://google-keep-clone-8drj.onrender.com"
     const [loginData, setLoginData]=useState({
         name:'',
         email:'',

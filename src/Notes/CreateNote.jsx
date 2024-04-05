@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateNote = () => {
 
-    const url = "http://localhost:3001"
+    const url = "https://google-keep-clone-8drj.onrender.com"
     const [visibility, setVisibility] = useState(false);
     const [note, setNote] = useState({
         heading: "",
@@ -33,6 +33,7 @@ const CreateNote = () => {
                     }
                     else{
                         console.log(res.message)
+                        alert(res.message)
                     }
                 })
                 .catch((err)=>{console.log(err)})
@@ -110,25 +111,25 @@ const CreateNote = () => {
     
 
     return (
-        <>
+        <div >
             <div onDoubleClick={hideNoteBox} className='m-auto pt-1 mt-5 w-64 xs:w-80 shadow-lg rounded-xl shadow-slate-400 font-cursive'>
                 <form>{visibility ?
-                    <>
+                    <div className='relative'>
                         <input type="text" name="heading" value={note.heading} placeholder="Add Title" onChange={addNote} className='w-full p-3 m-0 font-bold outline-none required' />
                         <textarea type="text" name="content" value={note.content} placeholder="Add a note..." rows="6" onChange={addNote} className='pl-3 w-3/4 xs:w-5/6 outline-none resize-none scrollbar-hidden required' />
-                        <button className='ml-2 mr-1 mb-3 w-10 h-10 shadow-sm shadow-slate-700 rounded-full bg-white text-center text-4xl text-yellow-400 hover:text-white hover:bg-yellow-400 ' onClick={checkData}>+</button>
-                    </>
+                        <button className='ml-2 mr-1 mb-3 w-11 absolute h-11 bottom-0 right-1 shadow-sm pb-4 shadow-slate-700 rounded-full bg-white text-center text-4xl text-yellow-400 hover:text-white hover:bg-yellow-400 ' onClick={checkData}>+</button>
+                    </div>
                     :
                     <input placeholder="Add a note" onClick={showNoteBox} className='w-full p-3 m-0 font-bold outline-none rounded-xl'></input>
                 }
                 </form>
             </div>
-            <div className='flex md:m-8 lg:m-12 mt-8 justify-center flex-wrap'>
+            <div className='flex md:m-8 lg:m-12 mt-8 justify-center sm:pb-0 pb-28 flex-wrap'>
                 {allNotesData.map((value, index) => {
                     return (<Note id={index} key={index} value={value} />);
                 })}
             </div>
-        </>
+        </div>
     )
 }
 
